@@ -74,7 +74,6 @@ h5 {
     padding: 12px 0;
 }
 
-
 /* ------------------------------- 3. Layout --------------------------------------- */
 
 /* --------------- 3.1 Reusables ----------------------- */
@@ -97,7 +96,6 @@ a:link {
 /* --------------- 4.1 Header Section ------------------------- */
 
 .header-outer-container {
-    /*border: 2px solid red;*/
     background: linear-gradient(to bottom right, var(--blue), var(--purple));
     display: flex;
     flex-direction: row;
@@ -106,8 +104,35 @@ a:link {
     position: relative;
 }
 
+/* Ik had onderstaande voor de achtergrond ruis op de header. */
+/* Dat werkt wel, alleen werken dan de links niet meer. */
+/* Even geen idee hoe dit op te lossen. */
+
+/*.header-outer-container::before {*/
+/*    content: "";*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    background-image: url(/assets/noise-texture.png);*/
+/*    opacity: 0.6;*/
+/*    z-index: 1;*/
+/*}*/
+
+.header-outer-container::after {
+    position: absolute;
+    content: "";
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-right: 100vw solid transparent;
+    border-bottom: 2vw solid var(--white);
+    z-index: 1;
+}
+
 .header-inner-container {
-    /*border: 2px solid blue;*/
     color: var(--white);
     flex-basis: 1400px;
     display: flex;
@@ -116,12 +141,11 @@ a:link {
     text-align: center;
     flex-shrink: 1;
     flex-grow: 0;
-    margin: 10px 10px;
+    margin: 0 20px;
     padding: 5px 5px;
 }
 
 .header-nav {
-    /*border: 2px solid deeppink;*/
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
@@ -130,7 +154,6 @@ a:link {
 }
 
 .header-nav ul {
-    /*border: 2px solid white;*/
     font-size: 18px;
     display: flex;
     flex-direction: row;
@@ -147,7 +170,6 @@ a:link {
 }
 
 .header-content {
-    /*border: 2px solid lightgreen;*/
     text-align: center;
     max-width: 800px;
     padding: 70px 0;
@@ -187,11 +209,11 @@ a:link {
 /* --------------- 4.2 Info Section ------------------- */
 
 .info-outer-container {
-    border: 2px solid red;
     display: flex;
     flex-direction: row;
     width: 100%;
     justify-content: center;
+    background-color: var(--white);
     position: relative;
 }
 
@@ -210,11 +232,10 @@ a:link {
 }
 
 .info-inner-container {
-    /*border: 2px solid blue;*/
     flex-basis: 750px;
     display: flex;
     flex-direction: column;
-    margin: 125px 0;
+    margin: 200px 20px;
     padding: 5px 5px;
     z-index: 1;
 }
@@ -233,10 +254,9 @@ a:link {
     margin-top: 50px;
 }
 
-    /* --------------- 4.3 Studies Section ------------------- */
+/* --------------- 4.3 Studies Section ------------------- */
 
 .studies-outer-container {
-    /*border: 2px solid red;*/
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -245,11 +265,23 @@ a:link {
     position: relative;
 }
 
+.studies-outer-container::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 100vw solid transparent;
+    border-top: 2vw solid var(--white);
+    z-index: 1;
+}
+
 .studies-outer-container::after {
     content: "studies";
     position: absolute;
     font-size: 256px;
-    top: 0;
+    top:4%;
     left: 50%;
     transform: translate(-50%, 0%);
     letter-spacing: 30px;
@@ -260,7 +292,6 @@ a:link {
 }
 
 .studies-inner-container {
-    /*border: 2px solid blue;*/
     flex-basis: 1400px;
     display: flex;
     flex-direction: column;
@@ -268,12 +299,11 @@ a:link {
     flex-shrink: 1;
     flex-grow: 0;
     gap: 16px;
-    margin: 120px 30px 120px 30px;
+    margin: 250px 20px 120px 20px;
     z-index: 1;
 }
 
 .studies-article {
-    /*border: 2px solid green;*/
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -297,7 +327,6 @@ a:link {
 }
 
 .studies-article-details {
-    /*border: 2px solid orangered;*/
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -306,21 +335,28 @@ a:link {
     flex-shrink: 1;
     padding: 0 60px 50px 60px;
     gap: 20px;
+    position: relative;
+}
+
+.studies-article-details h3 {
+    position: relative;
+}
+
+.studies-article-details h3::after {
+    content: "";
+    position: absolute;
+    bottom: -30px;
+    left: 0;
+    width: 55px;
+    height: 6px;
+    background-image: url("/assets/squiggle_line.svg");
+    background-repeat: repeat-x;
 }
 
 .studies-article-details p {
     font-size: 16px;
     font-weight: 400;
-    margin: 60px 0 30px 0;
-}
-
-.studies-article-details-wave-icon {
-    background-image: url("/assets/squiggle_line.svg");
-    position: absolute;
-    display: block;
-    width: 55px;
-    height: 6px;
-    top: 300px;
+    margin: 45px 0 30px 0;
 }
 
 .studies-article-details-link {
@@ -328,29 +364,56 @@ a:link {
     text-transform: uppercase;
     font-weight: 500;
     letter-spacing: 1px;
+    position: relative;
 }
 
 .studies-article-details-link:hover {
     cursor: pointer;
 }
 
+.studies-article-details-link::after {
+    content: "";
+    position: absolute;
+    bottom: 6px;
+    left: 15ch;
+    width: 5%;
+    height: 2px;
+    background-color: var(--purple);
+    transition: width 0.3s ease-in-out;
+}
+
+.studies-article-details-link:hover::after {
+    width: 15%;
+}
 
 /* --------------- 4.4 Services Section ------------------- */
 
 .services-outer-container {
-    /*border: 2px solid red;*/
     display: flex;
     flex-direction: row;
     width: 100%;
     justify-content: center;
+    background-color: var(--white);
     position: relative;
+}
+
+.services-outer-container::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 100vw solid transparent;
+    border-top: 2vw solid var(--light-grey);
+    z-index: 1;
 }
 
 .services-outer-container::after {
     content: "services";
     position: absolute;
     font-size: 200px;
-    top: 0;
+    top: 5%;
     left: 50%;
     transform: translate(-50%, 0%);
     letter-spacing: 20px;
@@ -370,7 +433,7 @@ a:link {
     flex-shrink: 1;
     flex-grow: 0;
     gap: 16px 16px;
-    margin: 150px 30px 90px 30px;
+    margin: 200px 20px 120px 20px;
     z-index: 1;
 }
 
@@ -408,16 +471,43 @@ a:link {
 /* --------------- 4.6 Contact Section ------------------- */
 
 .contact-outer-container {
-    /*border: 2px solid red;*/
     background: linear-gradient(to bottom right, var(--blue), var(--purple));
     display: flex;
     flex-direction: row;
     width: 100%;
     justify-content: center;
+    position: relative;
 }
 
+.contact-outer-container::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 100vw solid transparent;
+    border-top: 2vw solid var(--white);
+    z-index: 1;
+}
+
+/* Ik had onderstaande voor de achtergrond ruis op de header. */
+/* Dat werkt wel, alleen werken dan de links en het contact formulier niet meer. */
+/* Even geen idee hoe dit op te lossen.*/
+
+/*.contact-outer-container::before {*/
+/*    content: "";*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    background-image: url(/assets/noise-texture.png);*/
+/*    opacity: 0.6;*/
+/*    z-index: 1;*/
+/*}*/
+
 .contact-inner-container {
-    /*border: 2px solid blue;*/
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -426,7 +516,7 @@ a:link {
     align-items: center;
     flex-shrink: 1;
     flex-grow: 0;
-    margin: 50px 30px;
+    margin: 100px 20px;
 }
 
 .contact-inner-container p {
@@ -435,7 +525,6 @@ a:link {
 }
 
 .contact-form {
-    /*border: 2px solid lightgreen;*/
     width: 600px;
     margin: 0 10px;
     display: flex;
@@ -489,7 +578,6 @@ a:link {
 /* --------------- 4.8 Footer ------------------- */
 
 .footer-outer-container {
-    /*border: 2px solid red;*/
     background-color: var(--black);
     display: flex;
     flex-direction: row;
@@ -498,11 +586,10 @@ a:link {
 }
 
 .footer-inner-container {
-    /*border: 2px solid green;*/
     color: #FFFFFF;
     font-size: 14px;
     padding: 20px 50px;
-    margin: 0 30px;
+    margin: 0 20px;
     font-weight: 400;
 }
 
@@ -548,5 +635,18 @@ a:link {
         font-size: 150px;
     }
 
+    .studies-outer-container::after {
+        font-size: 75px;
+        margin-top: 40px;
+    }
+
+    .services-outer-container::after {
+        font-size: 75px;
+        margin-top: 20px;
+    }
+
+    .studies-article-details-link::after {
+        left: 35%;
+    }
 
 }
